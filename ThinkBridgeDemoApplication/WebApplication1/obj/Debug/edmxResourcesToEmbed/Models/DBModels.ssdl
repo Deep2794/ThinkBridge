@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ThinkBridgeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ShopBridgeItems">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="varchar" MaxLength="50" />
+    <Property Name="ItemDesc" Type="varchar(max)" />
+    <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityContainer Name="ThinkBridgeDBModelStoreContainer">
+    <EntitySet Name="ShopBridgeItems" EntityType="Self.ShopBridgeItems" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

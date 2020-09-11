@@ -1,0 +1,51 @@
+﻿@model ShopBridgeMVC.Models.mvcItemModel
+@{
+    ViewBag.Title = "Add Shop Bridge Items";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(Model => Model.ItemID)
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemName,"Item Name")
+            @Html.EditorFor(Model => Model.ItemName)
+            @Html.ValidationMessageFor(Model => Model.ItemName)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemDesc)
+            @Html.TextAreaFor(Model => Model.ItemDesc, "Item Description")
+            @Html.ValidationMessageFor(Model => Model.ItemDesc)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemPrice)
+            @Html.EditorFor(Model => Model.ItemPrice, "Item Price")
+            @Html.ValidationMessageFor(Model => Model.ItemPrice)
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn button" />
+            <a href="@Url.Action("Index","Item")" class=" btn button">Back To List</a>
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $("#ItemPrice").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which!=  46) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+        });
+    </script>
+}
+

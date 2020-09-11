@@ -1,0 +1,40 @@
+﻿@model ShopBridgeMVC.Models.mvcItemModel
+@{
+    ViewBag.Title = "View Shop Bridge Items";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(Model => Model.ItemID)
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemName,"Item Name")
+            @Html.TextBoxFor(Model => Model.ItemName)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemDesc,"Item Description")
+            @Html.TextAreaFor(Model => Model.ItemDesc)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.ItemPrice,"Item Price")
+            @Html.TextBoxFor(Model => Model.ItemPrice)
+        </div>
+        <div class="form-group">
+            <a href="@Url.Action("Index","Item")" class=" btn button">Back To List</a>
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+    <script>
+        $(document).ready(function () {
+            $("#ItemName").prop("readonly", true);
+            $("#ItemDesc").prop("readonly", true);
+            $("#ItemPrice").prop("readonly", true);
+        });
+    </script>
+}
+

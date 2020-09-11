@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ShopBridgeMVC.Models.mvcItemModel>
+
+@{
+    ViewBag.Title = "Shop Bridge Application";
+}
+
+<br />
+<p>
+    <a href="@Url.Action("Add","Item")" class="btn btn-default"><i class="fa fa-plus"></i> Add New Item</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+
+            <th>
+                Item Name
+            </th>
+            <th>
+                Item Description
+            </th>
+            <th>
+                Item Price
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemDesc)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.ItemPrice)
+            </td>
+            <td>
+
+                <a href="@Url.Action("ViewItems","Item",new { id=item.ItemID})" class="btn btn-default" title="View"><i class="fa fa-eye"></i></a>
+                <a onclick="Delete(@item.ItemID)" class="btn btn-default"><i class="fa fa-trash" title="Delete"></i></a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var successmessage = '@TempData["SuccessMessage"]'
+            if (successmessage != '') {
+
+                alertify.success(successmessage);
+            }
+        });
+        function Delete(id) {
+            alertify.confirm('ShopBridge Items', 'Are you sure you want to delete this Item?', function () {
+                window.location.href = '@Url.Action("DeleteItems","Item")/'+id;
+            },null)
+        }
+    </script>
+}
